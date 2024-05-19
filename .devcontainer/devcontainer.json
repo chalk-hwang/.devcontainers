@@ -15,7 +15,7 @@
     "ghcr.io/devcontainers/features/node:1.4.1": {},
     "ghcr.io/devcontainers/features/github-cli:1.0.11": {},	    
     "ghcr.io/devcontainers/features/docker-in-docker:2.11.0": {},
-    "ghcr.io/devcontainers/features/common-util:2.4.32": {},
+    "ghcr.io/devcontainers/features/common-utils:2.4.3": {},
     "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {}
 
   },
