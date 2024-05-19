@@ -1,0 +1,32 @@
+name: "Features - Release"
+on:
+  workflow_dispatch:
+    inputs:
+      # run_tests:
+      #   type: boolean
+      #   description: 'run tests'
+      #   default: true
+
+jobs:
+  # run-tests:
+  #   uses: ./.github/workflows/test.yaml
+  #   secrets: inherit
+  #   with:
+  #     enabled: ${{ inputs.run_tests }}
+
+  deploy:
+  #   needs: [run-tests]
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Publish Features"
+        uses: devcontainers/action@v1
+        with:
+          publish-features: "true"
+          base-path-to-features: "./src/features"
+          generate-docs: "false"
+          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

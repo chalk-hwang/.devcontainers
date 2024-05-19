@@ -1,0 +1,21 @@
+{
+  "name": "asdf plackages preloader",
+  "id": "asdf-preloader",
+  "version": "1.0.8",
+  "description": "Installs an asdf package.",
+  "documentationURL": "http://github.com/chalk-hwang/.devcontainer/tree/main/src/features/asdf-package",
+  "installsAfter": [
+      "ghcr.io/chalk-hwang/features/apt-get-packages"
+  ],
+  "options": {
+    "globalDependecies": {
+        "type": "string",
+        "default": ""
+    },
+    "allowDepenciesEscalation":{
+      "type": "boolean",
+      "default": false
+    }
+  }
+
+}
