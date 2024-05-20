@@ -22,37 +22,14 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: sudo apt update && sudo apt install tree jq -y
-      shell: bash
+  - run: sudo apt update && sudo apt install tree jq -y
+    shell: bash
 
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        list-files: json
-        filters: |
-          src: 
-            - src/**/*.sh
-          test: 
-            - test/**/*.sh
-
-    - id: feature-finder
-      shell: bash
-      run: |
-        echo '${{ steps.filter.outputs.changes }}'
-        
-        # prepare all features
-        all_features=$(sudo tree -J -d  ./src | sudo jq -c '.[0].contents | map(.name)')
-
-        # prepare changed features
-        cd ${{ inputs.path }}
-        echo '${{ steps.filter.outputs.src_files }}' > src_files.json
-        echo '${{ steps.filter.outputs.test_files }}' > test_files.json
-        cat src_files.json |  jq --raw-output | awk -F'/' '{print $2}' | jq -R -s -c 'split("\n")' | jq -c 'map(select(length > 0))' > changed_src_features.json
-        cat test_files.json |  jq --raw-output | awk -F'/' '{print $2}' | jq -R -s -c 'split("\n")' | jq -c 'map(select(length > 0))' > changed_test_features.json
-        jq -sc '.[0] + .[1] | unique'  changed_src_features.json changed_test_features.json > changed_features.json
-        changed_features=$(cat changed_features.json)
-
-        # outputs 
-        echo "all_features=$all_features" >> $GITHUB_OUTPUT
-        echo "changed_features=$changed_features" >> $GITHUB_OUTPUT
-
+  - uses: dorny/paths-filter@v2
+    id: filter
+    with:
+      list-files: json
+      filters: "src: \n  - src/**/*.sh\n  #magic___^_^___line\n"
+  - id: feature-finder
+    shell: bash
+    run: "echo '${{ steps.filter.outputs.changes }}'\n    #magic___^_^___line\n# prepare all features\nall_features=$(sudo tree -J -d  ./src | sudo jq -c '.[0].contents | map(.name)')\n    #magic___^_^___line\n# prepare changed features\ncd ${{ inputs.path }}\necho '${{ steps.filter.outputs.src_files }}' > src_files.json\necho '${{ steps.filter.outputs.test_files }}' > test_files.json\ncat src_files.json |  jq --raw-output | awk -F'/' '{print $2}' | jq -R -s -c 'split(\"\\n\")' | jq -c 'map(select(length > 0))' > changed_src_features.json\ncat test_files.json |  jq --raw-output | awk -F'/' '{print $2}' | jq -R -s -c 'split(\"\\n\")' | jq -c 'map(select(length > 0))' > changed_test_features.json\njq -sc '.[0] + .[1] | unique'  changed_src_features.json changed_test_features.json > changed_features.json\nchanged_features=$(cat changed_features.json)\n    #magic___^_^___line\n# outputs \necho \"all_features=$all_features\" >> $GITHUB_OUTPUT\necho \"changed_features=$changed_features\" >> $GITHUB_OUTPUT\n    #magic___^_^___line\n"
