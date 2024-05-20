@@ -15,7 +15,7 @@ ensure_nanolayer nanolayer_location "v0.4.45"
 ${nanolayer_location} \
     install \
     devcontainer-feature \
-    "ghcr.io/devcontainers-contrib/features/asdf-package:1.0.5" \
+    "ghcr.io/chalk-hwang/devcontainer-features/asdf-package:0.0.1" \
     --option plugin='direnv' --option version="${VERSION}"
     
 
