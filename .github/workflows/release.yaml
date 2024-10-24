@@ -26,7 +26,7 @@ jobs:
       with:
         publish-features: "true"
         base-path-to-features: ./features
-        features-namespace: devcontainers/features
+        features-namespace: chalk-hwang/devcontainers/features
         generate-docs: "false"
 
       env:
