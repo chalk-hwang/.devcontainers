@@ -3,7 +3,7 @@
   "id": "asdf-package",
   "version": "0.0.1",
   "description": "Installs an asdf package.",
-  "documentationURL": "http://github.com/chalk-hwang/devcontainer-features/tree/main/src/features/asdf-package",
+  "documentationURL": "http://github.com/chalk-hwang/.devcontainers",
   "installsAfter": [
       "ghcr.io/devcontainers-contrib/features/apt-get-packages"
   ],

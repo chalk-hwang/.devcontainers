@@ -5,26 +5,21 @@ inputs:
     description: "Base feature folder (containing src and test folders)"
     type: string
     required: true
-
 outputs:
   changed_features: # id of output
     description: "A JSON formatted list of all changed features"
     value: ${{ steps.feature-finder.outputs.changed_features }}
-
   all_features: # id of output
     description: "A JSON formatted list of all features"
     value: ${{ steps.feature-finder.outputs.all_features }}
-
-  all_generated_features: # id of outputc
+  all_generated_features: # id of output
     description: "A JSON formatted list of all generated features"
     value: ${{ steps.feature-finder.outputs.all_generated_features }}
-
 runs:
   using: "composite"
   steps:
   - run: sudo apt update && sudo apt install tree jq -y
     shell: bash
-
   - uses: dorny/paths-filter@v2
     id: filter
     with:
