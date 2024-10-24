@@ -1,7 +1,7 @@
 {
   "name": "asdf package",
-  "id": "asdf-package",
-  "version": "0.0.1",
+  "id": "asdf-",
+  "version": "1",
   "description": "Installs an asdf package.",
   "documentationURL": "http://github.com/chalk-hwang/.devcontainers",
   "installsAfter": [

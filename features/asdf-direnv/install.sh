@@ -15,9 +15,19 @@ ensure_nanolayer nanolayer_location "v0.4.45"
 ${nanolayer_location} \
     install \
     devcontainer-feature \
-    "ghcr.io/chalk-hwang/devcontainer-features/asdf-package:0.0.1" \
+    "ghcr.io/chalk-hwang/devcontainers/features/asdf:1" \
     --option plugin='direnv' --option version="${VERSION}"
     
 
 
+
+if [[ "$(cat /etc/bash.bashrc)" != *"$1"* ]]; then
+    asdf direnv setup --shell zsh --version $VERSION
+fi
+if [ -f "/etc/zsh/zshrc" ] && [[ "$(cat /etc/zsh/zshrc)" != *"$1"* ]]; then
+    asdf direnv setup --shell zsh --version $VERSION
+fi
+
+updaterc() {
+}
 echo 'Done!'

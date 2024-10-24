@@ -15,6 +15,6 @@
       }
   },
   "installsAfter": [
-      "ghcr.io/chalk-hwang/devcontainers/features/asdf-package"
+      "ghcr.io/chalk-hwang/devcontainers/features/asdf"
   ]
 }
